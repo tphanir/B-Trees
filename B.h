@@ -16,11 +16,17 @@ typedef struct node_tag
     struct node_tag *children[M];
 }Node;
 
+void PRINT_NODE(Node *root);
+void PRINT_TREE(Node *root);
+
 int BINARY_SEARCH(int data[], int target, int start, int end);
 Boolean SEARCH_NODE(int target, Node *current, int *pos);
 Node *SEARCH_TREE(int target, Node *root, int *targetPosition);
 
-
+void SPLIT(int median, Node *medianRight, Node *current, int pos, int *newMedian, Node **newMedianRight);
+void PUSH_IN(int median, Node *medianRight, Node *current, int pos);
+Boolean PUSH_DOWN(int value, Node *current, int *median, Node **medianRight);
+Node *INSERT_TREE(int value, Node *root);
 
 
 

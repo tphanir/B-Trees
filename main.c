@@ -2,9 +2,11 @@
 
 void main()
 {
-    int arr[] = {10, 20, 30, 40, 50, 60};
-    printf("%d %d %d", BINARY_SEARCH(arr, 5, 0, 5),
-                    BINARY_SEARCH(arr, 699, 0, 5),
-                    BINARY_SEARCH(arr, 34, 0, 5)
-           );
+    Node *root = NULL;
+    int arr[] = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140};
+    for(int i=0; i<14; i++)
+    {
+        root = INSERT_TREE(arr[i], root);
+    }
+    PRINT_TREE(root);
 }
