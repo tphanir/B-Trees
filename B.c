@@ -25,7 +25,6 @@ void PRINT_TREE(Node *root)
         {
             PRINT_TREE(root->children[i]);
         }
-
     }
 }
 

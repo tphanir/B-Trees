@@ -28,7 +28,7 @@ void PUSH_IN(int median, Node *medianRight, Node *current, int pos);
 Boolean PUSH_DOWN(int value, Node *current, int *median, Node **medianRight);
 Node *INSERT_TREE(int value, Node *root);
 
-
+Node *DELETE_TREE(int target, Node *root);
 
 
 #endif //B_TREES_B_H
