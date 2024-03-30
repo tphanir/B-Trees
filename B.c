@@ -61,7 +61,6 @@ int BINARY_SEARCH(int data[], int target, int start, int end)
     {
         RETURN_VALUE= start;
     }
-
     return RETURN_VALUE;
 }
 
@@ -73,7 +72,7 @@ int BINARY_SEARCH(int data[], int target, int start, int end)
 Boolean SEARCH_NODE(int target, Node *current, int *pos)
 {
     Boolean RETURN_VALUE= FALSE;
-    *pos = BINARY_SEARCH(current->data, target, 0, MAX - 1);
+    *pos = BINARY_SEARCH(current->data, target, 0, current->count-1);
     if(current->data[*pos] == target)
     {
         RETURN_VALUE= TRUE;
@@ -98,7 +97,7 @@ Node *SEARCH_TREE(int target, Node *root, int *targetPosition)
         }
         else
         {
-            SEARCH_NODE(target, root->children[*targetPosition], targetPosition);
+            SEARCH_TREE(target, root->children[*targetPosition], targetPosition);
         }
     }
     return RETURN_VALUE;
@@ -114,8 +113,8 @@ void PUSH_IN(int median, Node *medianRight, Node *current, int pos)
     int i;
     for (i=current->count; i>pos; i--)
     {
-        current->data[i - 1] = current->data[i - 2];
-        current->children[i] = current->children[i - 1];
+        current->data[i] = current->data[i - 1];
+        current->children[i + 1] = current->children[i];
     }
     current->data[pos] = median;
     current->children[pos + 1] = medianRight;
@@ -142,10 +141,10 @@ void SPLIT(int median, Node *medianRight, Node *current, int pos, int *newMedian
 
    *newMedianRight = (Node *)malloc(sizeof(Node));
 
-   for(i = m + 1; i <= MAX; i++)
+   for(i = m; i < MAX; i++)
    {
-       (*newMedianRight)->data[i - m - 1] = current->data[i - 1];
-       (*newMedianRight)->children[i - m] = current->children[i];
+       (*newMedianRight)->data[i - m] = current->data[i];
+       (*newMedianRight)->children[i - m + 1] = current->children[i + 1];
    }
 
    (*newMedianRight)->count = MAX - m;
@@ -183,10 +182,7 @@ Boolean PUSH_DOWN(int value, Node *current, int *median, Node **medianRight)
     }
     else
     {
-        if(SEARCH_NODE(value, current, &pos))
-        {
-            printf("WARNING : inserting duplicate element.");
-        }
+        SEARCH_NODE(value, current, &pos);
         if(PUSH_DOWN(value, current->children[pos], median, medianRight))
         {
             if(current->count < MAX)
