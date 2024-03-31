@@ -28,6 +28,14 @@ void PUSH_IN(int median, Node *medianRight, Node *current, int pos);
 Boolean PUSH_DOWN(int value, Node *current, int *median, Node **medianRight);
 Node *INSERT_TREE(int value, Node *root);
 
+
+void MOVE_RIGHT(Node *current, int pos);
+void MOVE_LEFT(Node *current, int pos);
+void COMBINE(Node *current, int pos);
+void RESTORE(Node *current, int pos);
+void SUCCESSOR(Node *current, int pos);
+void REMOVE(Node *current, int pos);
+void REC_DELETE_TREE(int target, Node *current);
 Node *DELETE_TREE(int target, Node *root);
 
 
